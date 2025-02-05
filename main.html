@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI-Based Solution for Farmers</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0fdf4;
+      margin: 0;
+      padding: 0;
+    }
+
+
+    .navbar {
+      background-color: #16a34a;
+      color: white;
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .navbar ul {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      gap: 150px;
+    }
+    .nav-item {
+      cursor: pointer;
+      transition: color 0.3s;
+    }
+    .nav-item:hover {
+      color: #b7e4c7;
+    }
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+    .profile-icon {
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+    .toggle-btn {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 20px;
+      cursor: pointer;
+    }
+    .carousel {
+      width: 100%;
+      overflow: hidden;
+      position: relative;
+      /* margin-top: 20px; */
+    }
+    .carousel img {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+      display: none;
+    }
+    .carousel img.active {
+      display: block;
+    }
+    .card-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+      padding: 20px;
+    }
+    .card1 {
+      background: white;
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      width: 250px;
+      height: 100px;
+      gap: 40px;
+      
+    }
+    .card img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+    .sidebar {
+      width: 250px;
+      background-color: #16a34a;
+      color: white;
+      padding: 20px;
+      position: fixed;
+      left: -300px;
+      height: 100%;
+      transition: left 0.3s;
+      z-index: 2;
+      /* overflow: hidden; */
+    }
+    .sidebar.show {
+      left: 0;
+    }
+    .sidebar ul {
+      list-style: none;
+      padding: 0;
+    }
+    .sidebar-item {
+      padding: 10px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .sidebar-item:hover {
+      background-color: #1b4332;
+    }
+    .carousel {
+      position: relative;
+      z-index: 1;
+    }
+
+
+    header {
+      background: url('https://via.placeholder.com/1200x400') no-repeat center center/cover;
+      /* color: white; */
+      text-align: center;
+      padding: 60px 20px;
+    }
+
+    header h1 {
+      font-size: 3em;
+    }
+
+    header p {
+      font-size: 1.5em;
+      margin: 10px 0 20px;
+    }
+
+    .button {
+      background-color: #16a34a;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .button:hover {
+      background-color: #15803d;
+    }
+
+    .features, .testimonials, .faq, .contact {
+      padding: 20px;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background-color: white;
+      padding: 20px;
+      border-radius: 16px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+      cursor: pointer;
+    }
+
+    .card:hover {
+      transform: scale(1.05);
+    }
+
+    .testimonial, .faq-item {
+      background-color: white;
+      padding: 15px;
+      margin: 10px 0;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    footer {
+      text-align: center;
+      padding: 10px;
+      background-color: #e5e7eb;
+      color: #374151;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    input, textarea {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+
+    .review-text{
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+
+    }
+
+    .review-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+      padding: 20px;
+    }
+    .review-card {
+      background: white;
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      width: 250px;
+    }
+    .review-card img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+    }
+    .title{
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    
+  </style>
+</head>
+<body>
+
+  <nav class="navbar">
+    <button class="toggle-btn" onclick="toggleSidebar()">☰</button>
+    <ul>
+      <li class="nav-item">Home</li>
+      <li class="nav-item">Agriculture</li>
+      <li class="nav-item">Advanced Effects</li>
+      <li class="nav-item">About Us</li>
+      <li class="nav-item">Contact</li>
+    </ul>
+    <div class="nav-right">
+      <img src="https://i.pinimg.com/736x/8b/1d/67/8b1d6709f6075f4695bb1866e7c4ba44.jpg" alt="Profile" class="profile-icon" />
+    </div>
+  </nav>
+  
+  <aside class="sidebar" id="sidebar">
+    <ul>
+      <li class="sidebar-item">Yield Prediction</li>
+      <li class="sidebar-item">Health Report</li>
+      <li class="sidebar-item">Recommendation</li>
+      <li class="sidebar-item">Shopping</li>
+      <li class="sidebar-item">My Account</li>
+      <li class="sidebar-item">Settings</li>
+    </ul>
+  </aside>
+  
+  <div class="carousel">
+    <img src="https://img.freepik.com/premium-vector/agriculture-working-field-harvesting-sunny-day-vector-flat-illustration_939711-1181.jpg">
+    <img src="https://thumbs.dreamstime.com/z/agricultural-work-concept-cartoon-farmer-characters-working-fields-harvesting-cropping-vector-organic-eco-food-agricultural-159703706.jpg" alt="Farm Image 2">
+    <img src="https://static.vecteezy.com/system/resources/thumbnails/002/461/425/original/working-in-wheat-field-in-the-morning-free-video.jpg" alt="Farm Image 3">
+  </div>
+
+  <main class="content">
+    <h1 class="title">Welcome to AgroTech Solutions</h1>
+    <p class="title">Empowering Farmers with Technology</p>
+    
+    <section class="card-container">
+      <div class="card">
+        <img src="https://th.bing.com/th/id/OIP.2_JhsqQ4jr2bWY_2S8cIBwHaE8?rs=1&pid=ImgDetMain" alt="Agriculture Image 1">
+        <h3>Precision Farming</h3>
+        <p>Using technology to enhance farm productivity.</p>
+      </div>
+      <div class="card">
+        <img src="https://th.bing.com/th/id/OIP.ZIhybDJzbMpE9KhbjOVM2gHaE6?rs=1&pid=ImgDetMain" alt="Agriculture Image 2">
+        <h3>Soil Health</h3>
+        <p>Maintaining soil quality for better yields.</p>
+      </div>
+      <div class="card">
+        <img src="https://th.bing.com/th/id/OIP.3M5wVqexI71fjZduJCd0sQHaEf?rs=1&pid=ImgDetMain" alt="Agriculture Image 3">
+        <h3>Smart Irrigation</h3>
+        <p>Optimizing water usage for sustainable farming.</p>
+      </div>
+      <div class="card">
+        <img src="https://thumbs.dreamstime.com/z/organic-farming-food-farmer-agriculture-products-vector-vegetable-animal-farm-field-garden-cow-goose-quill-windmill-186920451.jpg" alt="Agriculture Image 4">
+        <h3>Organic Farming</h3>
+        <p>Growing crops naturally for healthier food.</p>
+      </div>
+      <div class="card">
+        <img src="https://th.bing.com/th/id/R.c82c16335b63c84e17485e00c14526fd?rik=Nq%2bjThWSfClSfg&riu=http%3a%2f%2fclipart-library.com%2fimage_gallery%2fn619879.png&ehk=Y9q0954kn40DDRyzn6%2fWGuuyYXW6QOmIDRC1rZRLmng%3d&risl=&pid=ImgRaw&r=0">
+        <h3>Organic Farming</h3>
+        <p>Growing crops naturally for healthier food.</p>
+      </div>
+      <div class="card">
+        <img src="https://static.vecteezy.com/system/resources/previews/001/590/789/large_2x/red-barn-and-windmill-in-farm-scene-free-vector.jpg">
+        <h3>Organic Farming</h3>
+        <p>Growing crops naturally for healthier food.</p>
+      </div>
+      <div class="card">
+        <img src="https://th.bing.com/th/id/OIP.bqKzd_21yw6N24ZGj0bvYwAAAA?w=450&h=450&rs=1&pid=ImgDetMain">
+        <h3>Organic Farming</h3>
+        <p>Growing crops naturally for healthier food.</p>
+      </div>
+      <div class="card">
+        <img src="https://thumbs.dreamstime.com/z/print-179427162.jpg">
+        <h3>Organic Farming</h3>
+        <p>Growing crops naturally for healthier food.</p>
+      </div>
+    </section>
+  </main>
+
+  <header>
+    <h1 >AI-Based Solution for Farmers</h1>
+    <p>Enhancing Productivity and Yield with Data-Driven Insights</p>
+    <button class="button" onclick="showModal('Welcome to our AI-based farming solution!')">Get Started</button>
+  </header>
+
+  <section id="features" class="features">
+    <div class="card" onclick="showModal('Precision Farming Tools help optimize crop management with AI.')">
+      <h2>Precision Farming Tools</h2>
+      <p>Optimize crop management with advanced AI tools tailored for your farm.</p>
+    </div>
+
+    <div class="card" onclick="showModal('Weather Forecasting provides real-time, AI-powered weather predictions.')">
+      <h2>Weather Forecasting</h2>
+      <p>Make informed decisions with real-time weather predictions powered by AI.</p>
+    </div>
+
+    <div class="card" onclick="showModal('Data Analytics leverages big data to improve crop yield and efficiency.')">
+      <h2>Data Analytics</h2>
+      <p>Leverage big data to improve crop yield and resource efficiency.</p>
+    </div>
+  </section>
+
+  <section id="testimonials" class="testimonials">
+    <h2>What Farmers Say</h2>
+    <div class="testimonial">
+      <p>"The AI tools have significantly improved my crop yield! Highly recommend it." - Ramesh, Farmer</p>
+    </div>
+    <div class="testimonial">
+      <p>"Weather forecasting is spot-on, helping me plan my work efficiently." - Priya, Agronomist</p>
+    </div>
+  </section>
+
+  <section id="faq" class="faq">
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq-item">
+      <strong>How does AI help in farming?</strong>
+      <p>AI provides data-driven insights for better decision-making and efficient farming practices.</p>
+    </div>
+    <div class="faq-item">
+      <strong>Is the solution easy to use?</strong>
+      <p>Yes, it's designed with a user-friendly interface, suitable for farmers of all backgrounds.</p>
+    </div>
+  </section>
+
+  <section id="contact" class="contact">
+    <h2>Contact Us</h2>
+    <form onsubmit="submitForm(event)">
+      <input type="text" placeholder="Your Name" required>
+      <input type="email" placeholder="Your Email" required>
+      <textarea placeholder="Your Message" required></textarea>
+      <button class="button" type="submit">Send Message</button>
+    </form>
+  </section>
+
+  <h2 class="review-text">Farmer Reviews</h2>
+
+  <section class="review-container">
+    
+    <div class="review-card">
+      <img src="https://th.bing.com/th/id/OIP.rP4QpPvnbdvydz7AI4R9WwHaIN?w=957&h=1060&rs=1&pid=ImgDetMain" alt="Farmer 1">
+      <h3>John Doe</h3>
+      <p>★★★★★ "Excellent platform! My yield increased significantly."</p>
+    </div>
+    <div class="review-card">
+      <img src="https://th.bing.com/th/id/OIP.L3C8AfHATppaXYp6iEPcDAHaHa?w=626&h=626&rs=1&pid=ImgDetMain" alt="Farmer 2">
+      <h3>Mary Smith</h3>
+      <p>★★★★☆ "Great insights and recommendations for farming!"</p>
+    </div>
+    <div class="review-card">
+      <img src="https://media.istockphoto.com/vectors/cartoon-illustration-for-children-farmer-boy-with-rake-and-bucket-vector-id1296720289?k=20&m=1296720289&s=612x612&w=0&h=0TRkFu95_Wi4ZG4GqmgH-JNgt9pmZRQiEn8UVykbeR4=" alt="Farmer 3">
+      <h3>Robert Wilson</h3>
+      <p>★★★★★ "Very helpful for sustainable agriculture."</p>
+    </div>
+    <div class="review-card">
+      <img src="https://th.bing.com/th/id/OIP.AenbsRL2321aACnnEJ9qZAHaI7?w=514&h=620&rs=1&pid=ImgDetMain" alt="Farmer 4">
+      <h3>Linda Johnson</h3>
+      <p>★★★★☆ "Amazing tool for modern farming."</p>
+    </div>
+    <div class="review-card">
+      <img src="https://www.shutterstock.com/image-vector/farmer-tractor-pitchfork-on-farm-600w-246863716.jpg" alt="Farmer 5">
+      <h3>James Brown</h3>
+      <p>★★★★★ "Highly recommend it!"</p>
+    </div>
+    <div class="review-card">
+        <img src="https://www.shutterstock.com/image-vector/farmer-tractor-pitchfork-on-farm-600w-246863716.jpg" alt="Farmer 5">
+        <h3>James Brown</h3>
+        <p>★★★★★ "Highly recommend it!"</p>
+      </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Department of Agriculture - AI for Farmers</p>
+  </footer>
+
+  <div class="overlay" id="overlay" onclick="hideModal()"></div>
+  <div class="modal" id="modal">
+    <p id="modal-content"></p>
+    <button class="button" onclick="hideModal()">Close</button>
+  </div>
+
+  <script>
+    function showModal(message) {
+      document.getElementById('modal-content').textContent = message;
+      document.getElementById('modal').style.display = 'block';
+      document.getElementById('overlay').style.display = 'block';
+    }
+
+    function hideModal() {
+      document.getElementById('modal').style.display = 'none';
+      document.getElementById('overlay').style.display = 'none';
+    }
+
+    function submitForm(event) {
+      event.preventDefault();
+      alert('Thank you for your message! We will get back to you soon.');
+    }
+    function toggleSidebar() {
+      document.getElementById("sidebar").classList.toggle("show");
+    }
+
+    let currentIndex = 0;
+    const images = document.querySelectorAll(".carousel img");
+    function changeImage() {
+      images[currentIndex].classList.remove("active");
+      currentIndex = (currentIndex + 1) % images.length;
+      images[currentIndex].classList.add("active");
+    }
+    setInterval(changeImage, 1000);
+  </script>
+</body>
+</html>
