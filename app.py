@@ -20,6 +20,14 @@ app.config['SECRET_KEY'] = 'your_secret_key_here'
 Session(app)
 
 @app.route('/')
+def home():
+    return render_template('index.html')  # Ensure 'index.html' exists in 'templates' folder
+
+@app.route('/chat')
+def chat():
+    return render_template('index.html')  # Ensure this correctly points to the chatbot UI
+
+@app.route('/')
 def index():
     # Initialize chat history in session
     if 'history' not in session:
@@ -27,6 +35,10 @@ def index():
         welcome_message = "AgriBot: Hello! I am your agricultural assistant. How can I assist you with farming today?"
         session['history'].append({'message': welcome_message, 'sender': 'bot'})
     return render_template('index.html', history=session['history'])
+
+@app.route('/edit')
+def ab_page():
+    return render_template('edit.html')  
 
 @app.route('/submit', methods=['POST'])
 def on_submit():
@@ -48,4 +60,4 @@ def generate_response(query):
     return result.content
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True,port=5000)
