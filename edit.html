@@ -69,7 +69,6 @@
             position: relative;
             overflow: hidden;
         }
-/* change animation speed */
         .slideshow img {
             position: absolute;
             width: 100%;
@@ -251,14 +250,12 @@
   </style>
 </head>
 <body>
-   <!--gototopbutton-->
    <div style="position: fixed; bottom: 0; right: 0; margin: 10px;z-index: 10000;">
     <img src="https://cdn4.iconfinder.com/data/icons/dot/256/arrow_up_1.png"
          alt="Back to Top" height="60cm" width="60cm" class="back-to-top" onclick="scrollToTop()">
 </div>
 
   <nav class="navbar">
-    <button class="toggle-btn" onclick="toggleSidebar()">☰</button>
     <ul>
       <li class="nav-item">Home</li>
       <li class="nav-item">Agriculture</li>
@@ -268,24 +265,14 @@
     </ul>
     
   </nav>
-  
-  <aside class="sidebar" id="sidebar">
-    <ul>
-      <li class="sidebar-item">Yield Prediction</li>
-      <li class="sidebar-item">Health Report</li>
-      <li class="sidebar-item">Recommendation</li>
-      <li class="sidebar-item">Shopping</li>
-      <li class="sidebar-item">My Account</li>
-      <li class="sidebar-item">Settings</li>
-    </ul>
-  </aside>
 
   <div class="carousel">
     <div class="slideshow" id="slideshow" style="width:device-width">
       <img src="https://www.syngenta.com/sites/default/files/styles/f_p_s_c_1920x728/public/2024-11/Print_Agriculture%20field%20at%20sunset%2C%20green%20wheat%20and%20soil.jpg.webp?itok=22PmQQc0">
       <img src="https://back.3blcdn.com/sites/default/files/styles/ratio_3_2/public/triplepundit/wide/Regen%20Wheat%20Field_0.jpg?h=a1a70de6" >
-     <!-- add two more images -->
-      
+      <img src="https://plasticseurope.org/wp-content/uploads/2021/10/5.6._aaheader.png" >
+
+  
       <div class="controls">
           <button id="prev"><</button>
           <button id="next">></button>
@@ -296,76 +283,47 @@
   
 
   <main class="content">
-    <h1 class="title">Welcome to AgroTech Solutions</h1>
-    <p class="title">Empowering Farmers with Technology</p>
+    <header>
+      <h1 >AI-Based Solution for Farmers</h1>
+      <p>Welcome to AgroTech Solutions</p>
+    </header>
+   
+    <section class="card-container" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; padding: 20px; text-align: center;">
+      <div style="display: flex; justify-content: center; width: 100%; flex-wrap: wrap;">
+        
+        <div class="card" style="width: 30%; height: 360px; display: flex; flex-direction: column; align-items: center; text-align: center; margin: 10px;">
+          <img src="https://img.freepik.com/free-photo/sunny-meadow-landscape_1112-134.jpg" alt="Fertilizer Recommendation" style="width: 100%; height: 180px; object-fit: cover; border-radius: 10px;">
+          <h3>Fertilizer Recommendation</h3>
+          <p>Our AI-powered model suggests the most effective fertilizers based on real-time soil conditions, crop type, and weather patterns, ensuring healthier plant growth and improved yields.</p>
+        </div>
     
-    <section class="card-container">
-      <div class="card">
-        <img src="https://th.bing.com/th/id/OIP.2_JhsqQ4jr2bWY_2S8cIBwHaE8?rs=1&pid=ImgDetMain" alt="Agriculture Image 1">
-        <h3>Precision Farming</h3>
-        <p>Using technology to enhance farm productivity.</p>
-      </div>
-      <div class="card">
-        <img src="https://th.bing.com/th/id/OIP.ZIhybDJzbMpE9KhbjOVM2gHaE6?rs=1&pid=ImgDetMain" alt="Agriculture Image 2">
-        <h3>Soil Health</h3>
-        <p>Maintaining soil quality for better yields.</p>
-      </div>
-      <div class="card">
-        <img src="https://th.bing.com/th/id/OIP.3M5wVqexI71fjZduJCd0sQHaEf?rs=1&pid=ImgDetMain" alt="Agriculture Image 3">
-        <h3>Smart Irrigation</h3>
-        <p>Optimizing water usage for sustainable farming.</p>
-      </div>
-      <div class="card">
-        <img src="https://thumbs.dreamstime.com/z/organic-farming-food-farmer-agriculture-products-vector-vegetable-animal-farm-field-garden-cow-goose-quill-windmill-186920451.jpg" alt="Agriculture Image 4">
-        <h3>Organic Farming</h3>
-        <p>Growing crops naturally for healthier food.</p>
-      </div>
-      <div class="card">
-        <img src="https://th.bing.com/th/id/R.c82c16335b63c84e17485e00c14526fd?rik=Nq%2bjThWSfClSfg&riu=http%3a%2f%2fclipart-library.com%2fimage_gallery%2fn619879.png&ehk=Y9q0954kn40DDRyzn6%2fWGuuyYXW6QOmIDRC1rZRLmng%3d&risl=&pid=ImgRaw&r=0">
-        <h3>Organic Farming</h3>
-        <p>Growing crops naturally for healthier food.</p>
-      </div>
-      <div class="card">
-        <img src="https://static.vecteezy.com/system/resources/previews/001/590/789/large_2x/red-barn-and-windmill-in-farm-scene-free-vector.jpg">
-        <h3>Organic Farming</h3>
-        <p>Growing crops naturally for healthier food.</p>
-      </div>
-      <div class="card">
-        <img src="https://th.bing.com/th/id/OIP.bqKzd_21yw6N24ZGj0bvYwAAAA?w=450&h=450&rs=1&pid=ImgDetMain">
-        <h3>Organic Farming</h3>
-        <p>Growing crops naturally for healthier food.</p>
-      </div>
-      <div class="card">
-        <img src="https://thumbs.dreamstime.com/z/print-179427162.jpg">
-        <h3>Organic Farming</h3>
-        <p>Growing crops naturally for healthier food.</p>
+        <div class="card" style="width: 30%; height: 360px; display: flex; flex-direction: column; align-items: center; text-align: center; margin: 10px;">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLOEW3Ha_w2usUy3rVQ-gEHyNEV5HxEdC9vQ&s" alt="Plant Disease Detection" style="width: 100%; height: 180px; object-fit: cover; border-radius: 10px;">
+          <h3>Plant Disease Detection</h3>
+          <p>Our AI system detects plant diseases from uploaded images and provides instant diagnoses, suggesting effective treatments to prevent crop damage and loss.</p>
+        </div>
+    
+        <div class="card" style="width: 30%; height: 360px; display: flex; flex-direction: column; align-items: center; text-align: center; margin: 10px;">
+          <img src="https://img.freepik.com/free-vector/chatbot-chat-message-vectorart_78370-4104.jpg" alt="Chatbot" style="width: 100%; height: 180px; object-fit: cover; border-radius: 10px;">
+          <h3>AI Chatbot</h3>
+          <p>Our smart chatbot provides instant answers to farmers' queries, covering best farming practices, pest control, weather forecasts, and market prices.</p>
+        </div>
+    
+        <div class="card" style="width: 30%; height: 360px; display: flex; flex-direction: column; align-items: center; text-align: center; margin: 10px;">
+          <img src="https://www.shutterstock.com/image-photo/farmer-works-irrigation-corn-passionate-600nw-2499563593.jpg" alt="Crop Prediction Model" style="width: 100%; height: 180px; object-fit: cover; border-radius: 10px;">
+          <h3>Crop Prediction</h3>
+          <p>Using advanced machine learning algorithms, our model forecasts crop yields based on historical and real-time data, helping farmers plan efficiently for maximum profitability.</p>
+        </div>
+    
       </div>
     </section>
+    
+    
   </main>
 
-  <header>
-    <h1 >AI-Based Solution for Farmers</h1>
-    <p>Enhancing Productivity and Yield with Data-Driven Insights</p>
-    <button class="button" onclick="showModal('Welcome to our AI-based farming solution!')">Get Started</button>
-  </header>
+  
 
-  <section id="features" class="features">
-    <div class="card" onclick="showModal('Precision Farming Tools help optimize crop management with AI.')">
-      <h2>Precision Farming Tools</h2>
-      <p>Optimize crop management with advanced AI tools tailored for your farm.</p>
-    </div>
-
-    <div class="card" onclick="showModal('Weather Forecasting provides real-time, AI-powered weather predictions.')">
-      <h2>Weather Forecasting</h2>
-      <p>Make informed decisions with real-time weather predictions powered by AI.</p>
-    </div>
-
-    <div class="card" onclick="showModal('Data Analytics leverages big data to improve crop yield and efficiency.')">
-      <h2>Data Analytics</h2>
-      <p>Leverage big data to improve crop yield and resource efficiency.</p>
-    </div>
-  </section>
-
+ 
 
   <section id="contact" class="contact">
     <h2>Contact Us</h2>
@@ -385,14 +343,14 @@
 
 
   <script>
-    function showModal(message) {
-      document.getElementById('modal-content').textContent = message;
-      document.getElementById('modal').style.display = 'block';
+    function showModel(message) {
+      document.getElementById('model-content').textContent = message;
+      document.getElementById('model').style.display = 'block';
       document.getElementById('overlay').style.display = 'block';
     }
 
-    function hideModal() {
-      document.getElementById('modal').style.display = 'none';
+    function hideModel() {
+      document.getElementById('model').style.display = 'none';
       document.getElementById('overlay').style.display = 'none';
     }
 
@@ -400,9 +358,7 @@
       event.preventDefault();
       alert('Thank you for your message! We will get back to you soon.');
     }
-    function toggleSidebar() {
-      document.getElementById("sidebar").classList.toggle("show");
-    }
+  
 
     let currentIndex = 0;
     const images = document.querySelectorAll(".carousel img");
