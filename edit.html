@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI-Based Solution for Farmers</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #ecfcd9;
+      margin: 0;
+      padding: 0;
+    }
+
+    .navbar {
+    background-color:  #409747;
+    color: white;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+}
+
+.toggle-btn {
+    font-size: 24px;
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    margin-right: 20px; /* Ensures some spacing */
+}
+
+.navbar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 auto; /* Centers the nav items */
+    display: flex;
+    flex-grow: 1; /* Makes sure it takes available space */
+    justify-content: center; /* Evenly spaces items in center */
+    gap: 80px; /* Adjust gap between items */
+}
+
+.nav-item {
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.nav-item:hover {
+    color: #a3d5b4;
+}
+
+    .carousel {
+      width: 100%;
+      overflow: hidden;
+      position: relative;
+    }
+    .carousel img {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+      display: none;
+      height: 500px;
+    }
+    .carousel img.active {
+      display: block;
+    }
+    .slideshow {
+            width: 100%;
+            height: 400px;
+            position: relative;
+            overflow: hidden;
+        }
+/* change animation speed */
+        .slideshow img {
+            position: absolute;
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            opacity: 0;
+            animation: slide 1s infinite;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .slideshow img.active {
+            opacity: 1;
+        }
+
+        .slideshow .controls {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+            pointer-events: none;
+        }
+
+        .slideshow .controls button {
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            pointer-events: all;
+            font-size: 16px;
+            border-radius: 5px;
+        }
+    .card-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+      padding: 20px;
+    }
+    .card1 {
+      background: white;
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      width: 250px;
+      height: 100px;
+      gap: 40px;
+      
+    }
+    .card img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+    .sidebar {
+      width: 250px;
+      background-color: #409747;
+      color: white;
+      padding: 20px;
+      position: fixed;
+      left: -300px;
+      height: 100%;
+      transition: left 0.3s;
+      z-index: 2;
+      /* overflow: hidden; */
+    }
+    .sidebar.show {
+      left: 0;
+    }
+    .sidebar ul {
+      list-style: none;
+      padding: 0;
+    }
+    .sidebar-item {
+      padding: 10px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .sidebar-item:hover {
+      background-color: #1b4332;
+    }
+    .carousel {
+      position: relative;
+      z-index: 1;
+    }
+
+
+    header {
+      background: url('https://via.placeholder.com/1200x400') no-repeat center center/cover;
+      /* color: white; */
+      text-align: center;
+      padding: 60px 20px;
+    }
+
+    header h1 {
+      font-size: 3em;
+    }
+
+    header p {
+      font-size: 1.5em;
+      margin: 10px 0 20px;
+    }
+
+    .button {
+      background-color:  #409747;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .button:hover {
+      background-color: #15803d;
+    }
+
+    .features, .testimonials, .faq, .contact {
+      padding: 20px;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background-color: white;
+      padding: 20px;
+      border-radius: 16px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+      cursor: pointer;
+    }
+
+    .card:hover {
+      transform: scale(1.05);
+    }
+
+    .testimonial, .faq-item {
+      background-color: white;
+      padding: 15px;
+      margin: 10px 0;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    footer {
+      text-align: center;
+      padding: 10px;
+      background-color: #e5e7eb;
+      color: #374151;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    input, textarea {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+
+    .title{
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    
+  </style>
+</head>
+<body>
+   <!--gototopbutton-->
+   <div style="position: fixed; bottom: 0; right: 0; margin: 10px;z-index: 10000;">
+    <img src="https://cdn4.iconfinder.com/data/icons/dot/256/arrow_up_1.png"
+         alt="Back to Top" height="60cm" width="60cm" class="back-to-top" onclick="scrollToTop()">
+</div>
+
+  <nav class="navbar">
+    <button class="toggle-btn" onclick="toggleSidebar()">☰</button>
+    <ul>
+      <li class="nav-item">Home</li>
+      <li class="nav-item">Agriculture</li>
+      <li class="nav-item">Advanced Effects</li>
+      <li class="nav-item">About Us</li>
+      <li class="nav-item">Contact</li>
+    </ul>
+    
+  </nav>
+  
+  <aside class="sidebar" id="sidebar">
+    <ul>
+      <li class="sidebar-item">Yield Prediction</li>
+      <li class="sidebar-item">Health Report</li>
+      <li class="sidebar-item">Recommendation</li>
+      <li class="sidebar-item">Shopping</li>
+      <li class="sidebar-item">My Account</li>
+      <li class="sidebar-item">Settings</li>
+    </ul>
+  </aside>
+
+  <div class="carousel">
+    <div class="slideshow" id="slideshow" style="width:device-width">
+      <img src="https://www.syngenta.com/sites/default/files/styles/f_p_s_c_1920x728/public/2024-11/Print_Agriculture%20field%20at%20sunset%2C%20green%20wheat%20and%20soil.jpg.webp?itok=22PmQQc0">
+      <img src="https://back.3blcdn.com/sites/default/files/styles/ratio_3_2/public/triplepundit/wide/Regen%20Wheat%20Field_0.jpg?h=a1a70de6" >
+     <!-- add two more images -->
+      
+      <div class="controls">
+          <button id="prev"><</button>
+          <button id="next">></button>
+      </div>
+</div>
+
+  </div>
+  
+
+  <main class="content">
+    <h1 class="title">Welcome to AgroTech Solutions</h1>
+    <p class="title">Empowering Farmers with Technology</p>
+    
+    <section class="card-container">
+      <div class="card">
+        <img src="https://th.bing.com/th/id/OIP.2_JhsqQ4jr2bWY_2S8cIBwHaE8?rs=1&pid=ImgDetMain" alt="Agriculture Image 1">
+        <h3>Precision Farming</h3>
+        <p>Using technology to enhance farm productivity.</p>
+      </div>
+      <div class="card">
+        <img src="https://th.bing.com/th/id/OIP.ZIhybDJzbMpE9KhbjOVM2gHaE6?rs=1&pid=ImgDetMain" alt="Agriculture Image 2">
+        <h3>Soil Health</h3>
+        <p>Maintaining soil quality for better yields.</p>
+      </div>
+      <div class="card">
+        <img src="https://th.bing.com/th/id/OIP.3M5wVqexI71fjZduJCd0sQHaEf?rs=1&pid=ImgDetMain" alt="Agriculture Image 3">
+        <h3>Smart Irrigation</h3>
+        <p>Optimizing water usage for sustainable farming.</p>
+      </div>
+      <div class="card">
+        <img src="https://thumbs.dreamstime.com/z/organic-farming-food-farmer-agriculture-products-vector-vegetable-animal-farm-field-garden-cow-goose-quill-windmill-186920451.jpg" alt="Agriculture Image 4">
+        <h3>Organic Farming</h3>
+        <p>Growing crops naturally for healthier food.</p>
+      </div>
+      <div class="card">
+        <img src="https://th.bing.com/th/id/R.c82c16335b63c84e17485e00c14526fd?rik=Nq%2bjThWSfClSfg&riu=http%3a%2f%2fclipart-library.com%2fimage_gallery%2fn619879.png&ehk=Y9q0954kn40DDRyzn6%2fWGuuyYXW6QOmIDRC1rZRLmng%3d&risl=&pid=ImgRaw&r=0">
+        <h3>Organic Farming</h3>
+        <p>Growing crops naturally for healthier food.</p>
+      </div>
+      <div class="card">
+        <img src="https://static.vecteezy.com/system/resources/previews/001/590/789/large_2x/red-barn-and-windmill-in-farm-scene-free-vector.jpg">
+        <h3>Organic Farming</h3>
+        <p>Growing crops naturally for healthier food.</p>
+      </div>
+      <div class="card">
+        <img src="https://th.bing.com/th/id/OIP.bqKzd_21yw6N24ZGj0bvYwAAAA?w=450&h=450&rs=1&pid=ImgDetMain">
+        <h3>Organic Farming</h3>
+        <p>Growing crops naturally for healthier food.</p>
+      </div>
+      <div class="card">
+        <img src="https://thumbs.dreamstime.com/z/print-179427162.jpg">
+        <h3>Organic Farming</h3>
+        <p>Growing crops naturally for healthier food.</p>
+      </div>
+    </section>
+  </main>
+
+  <header>
+    <h1 >AI-Based Solution for Farmers</h1>
+    <p>Enhancing Productivity and Yield with Data-Driven Insights</p>
+    <button class="button" onclick="showModal('Welcome to our AI-based farming solution!')">Get Started</button>
+  </header>
+
+  <section id="features" class="features">
+    <div class="card" onclick="showModal('Precision Farming Tools help optimize crop management with AI.')">
+      <h2>Precision Farming Tools</h2>
+      <p>Optimize crop management with advanced AI tools tailored for your farm.</p>
+    </div>
+
+    <div class="card" onclick="showModal('Weather Forecasting provides real-time, AI-powered weather predictions.')">
+      <h2>Weather Forecasting</h2>
+      <p>Make informed decisions with real-time weather predictions powered by AI.</p>
+    </div>
+
+    <div class="card" onclick="showModal('Data Analytics leverages big data to improve crop yield and efficiency.')">
+      <h2>Data Analytics</h2>
+      <p>Leverage big data to improve crop yield and resource efficiency.</p>
+    </div>
+  </section>
+
+
+  <section id="contact" class="contact">
+    <h2>Contact Us</h2>
+    <form onsubmit="submitForm(event)">
+      <input type="text" placeholder="Your Name" required>
+      <input type="email" placeholder="Your Email" required>
+      <textarea placeholder="Your Message" required></textarea>
+      <button class="button" type="submit">Send Message</button>
+    </form>
+  </section>
+
+  
+
+  <footer>
+    <p>&copy; 2025 Department of Agriculture - AI for Farmers</p>
+  </footer>
+
+
+  <script>
+    function showModal(message) {
+      document.getElementById('modal-content').textContent = message;
+      document.getElementById('modal').style.display = 'block';
+      document.getElementById('overlay').style.display = 'block';
+    }
+
+    function hideModal() {
+      document.getElementById('modal').style.display = 'none';
+      document.getElementById('overlay').style.display = 'none';
+    }
+
+    function submitForm(event) {
+      event.preventDefault();
+      alert('Thank you for your message! We will get back to you soon.');
+    }
+    function toggleSidebar() {
+      document.getElementById("sidebar").classList.toggle("show");
+    }
+
+    let currentIndex = 0;
+    const images = document.querySelectorAll(".carousel img");
+    function changeImage() {
+      images[currentIndex].classList.remove("active");
+      currentIndex = (currentIndex + 1) % images.length;
+      images[currentIndex].classList.add("active");
+    }
+    setInterval(changeImage, 1000);
+    
+ 
+            let slideIndex = 0;
+            let slides = document.querySelectorAll(".slideshow img");
+            let interval;
+    
+            function showSlides(index) {
+                slides.forEach((slide, i) => {
+                    slide.classList.remove("active");
+                    if (i === index) {
+                        slide.classList.add("active");
+                    }
+                });
+            }
+    
+            function nextSlide() {
+                slideIndex = (slideIndex + 1) % slides.length;
+                showSlides(slideIndex);
+            }
+    
+            function prevSlide() {
+                slideIndex = (slideIndex - 1 + slides.length) % slides.length;
+                showSlides(slideIndex);
+            }
+    
+            function startSlideshow() {
+                interval = setInterval(nextSlide, 3000);
+            }
+    
+            function stopSlideshow() {
+                clearInterval(interval);
+            }
+    
+            document.getElementById("next").addEventListener("click", () => {
+                stopSlideshow();
+                nextSlide();
+            });
+    
+            document.getElementById("prev").addEventListener("click", () => {
+                stopSlideshow();
+                prevSlide();
+            });
+    
+            const slideshowElement = document.getElementById("slideshow");
+            slideshowElement.addEventListener("mouseover", stopSlideshow);
+            slideshowElement.addEventListener("mouseout", () => {
+                startSlideshow();
+            });
+
+            startSlideshow();
+    
+            function scrollToTop() {
+                window.scrollTo({
+                    top: 0, 
+                    behavior:"smooth"
+                });
+            }
+           
+  
+  </script>
+</body>
+</html>
