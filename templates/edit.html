@@ -15,7 +15,7 @@
     .navbar {
     background-color:  #409747;
     color: white;
-    padding: 10px 20px;
+    padding: 20px 20px;
     display: flex;
     align-items: center;
 }
@@ -164,12 +164,16 @@
       background: url('https://via.placeholder.com/1200x400') no-repeat center center/cover;
       /* color: white; */
       text-align: center;
-      padding: 60px 20px;
+      padding: 10px 20px;
     }
 
     header h1 {
       font-size: 3em;
+      margin-bottom: 5px;
     }
+    h3 {
+  padding: 0.5px 0; /* Adjust as needed */
+}
 
     header p {
       font-size: 1.5em;
@@ -223,13 +227,15 @@
 
     footer {
       text-align: center;
-      padding: 10px;
+      padding: 5px;   
       background-color: #e5e7eb;
       color: #374151;
+      font-size: 0.9em;
     }
 
     form {
       display: flex;
+      
       flex-direction: column;
       gap: 10px;
     }
@@ -291,11 +297,24 @@
     <section class="card-container" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; padding: 20px; text-align: center;">
       <div style="display: flex; justify-content: center; width: 100%; flex-wrap: wrap;">
         
-        <div class="card" style="width: 30%; height: 360px; display: flex; flex-direction: column; align-items: center; text-align: center; margin: 10px;">
+    <!--     <div class="card" style="width: 30%; height: 360px; display: flex; flex-direction: column; align-items: center; text-align: center; margin: 10px;">
           <img src="https://img.freepik.com/free-photo/sunny-meadow-landscape_1112-134.jpg" alt="Fertilizer Recommendation" style="width: 100%; height: 180px; object-fit: cover; border-radius: 10px;">
           <h3>Fertilizer Recommendation</h3>
           <p>Our AI-powered model suggests the most effective fertilizers based on real-time soil conditions, crop type, and weather patterns, ensuring healthier plant growth and improved yields.</p>
-        </div>
+        </div> -->
+        <div class="card" style="width: 30%; height: 360px; display: flex; flex-direction: column; align-items: center; text-align: center; margin: 10px;">
+          <img src="https://img.freepik.com/free-photo/sunny-meadow-landscape_1112-134.jpg" alt="Crop Prediction Model" style="width: 100%; height: 180px; object-fit: cover; border-radius: 10px;">
+          <h3>Fertilizer Recommendation</h3>
+          <p>Our AI-powered model suggests the most effective fertilizers based on real-time soil conditions, crop type, and weather patterns, ensuring healthier plant growth and improved yields.</p>
+         
+          <!-- Button to redirect to Model1.html -->
+          <div class="model-button-container">
+              <a href="Model1.html">
+                  <button class="button">Try Fertilizer Recommendation</button>
+              </a>
+          </div>
+      </div>
+      
     
         <div class="card" style="width: 30%; height: 360px; display: flex; flex-direction: column; align-items: center; text-align: center; margin: 10px;">
           <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLOEW3Ha_w2usUy3rVQ-gEHyNEV5HxEdC9vQ&s" alt="Plant Disease Detection" style="width: 100%; height: 180px; object-fit: cover; border-radius: 10px;">
@@ -304,16 +323,16 @@
         </div>
     
         <div class="card" style="width: 30%; height: 360px; display: flex; flex-direction: column; align-items: center; text-align: center; margin: 10px;">
-          <img src="https://img.freepik.com/free-vector/chatbot-chat-message-vectorart_78370-4104.jpg" alt="Chatbot" style="width: 100%; height: 180px; object-fit: cover; border-radius: 10px;">
+          <img src="https://media.istockphoto.com/id/1445426863/vector/chat-bot-vector-logo-design-concept.jpg?s=612x612&w=0&k=20&c=XDdfzS4lNW9yxQ0BQGZq9KMLL4bJ8ywXlYdAhBSuoCA=" alt="Chatbot" style="width: 100%; height: 180px; object-fit: cover; border-radius: 10px;">
           <h3>AI Chatbot</h3>
           <p>Our smart chatbot provides instant answers to farmers' queries, covering best farming practices, pest control, weather forecasts, and market prices.</p>
           <div class="chatbot-button-container">
             <a href="http://127.0.0.1:5000/">
             
-              <button class="button">Talk to AgriBot</button>
+              <button class="button">Talk to AI Chatbot</button>
           </a>
           
-            <!-- <button class="button" onclick="window.location.href='/chat'">Talk to AgriBot</button> -->
+           
           </div>
         </div>
     
