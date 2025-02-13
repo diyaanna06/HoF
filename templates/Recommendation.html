@@ -139,7 +139,7 @@
     </div>
     <script>
         document.getElementById("fertilizerForm").addEventListener("submit", function(event) {
-            event.preventDefault(); // Prevent page reload
+            event.preventDefault(); 
     
             let requestData = {
                 "temperature": parseFloat(document.getElementById("temperature").value),
@@ -152,14 +152,14 @@
                 "phosphorus": parseFloat(document.getElementById("phosphorus").value),
     };
     
-            fetch("http://127.0.0.1:5000/predict", {  // ✅ Ensure this matches Flask URL
+            fetch("http://127.0.0.1:5000/predict", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify(requestData)
             })
-            .then(response => response.json())  // ✅ Ensure response is JSON
+            .then(response => response.json())  
             .then(data => {
                 console.log("Received:", data);
                 if (data.fertilizer) {
