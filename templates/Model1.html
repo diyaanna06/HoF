@@ -72,8 +72,6 @@
 </head>
 <body>
     <div class="container">
-       <!-- Add this inside the container -->
-  
         <h2>Fertilizer Recommendation</h2>
         <form id="fertilizerForm">
             <div class="form-group">
@@ -112,12 +110,12 @@
                     <option>Sugarcane</option>
                     <option>Tobacco</option>
                     <option>Wheat</option>
-                    <option>Coffee</option>
-                    <option>Kidney Beans</option>
-                    <option>Orange</option>
-                    <option>Pomegranate</option>
-                    <option>Rice</option>
-                    <option>Watermelon</option>
+                    <option>coffee</option>
+                    <option>kidneybeans</option>
+                    <option>orange</option>
+                    <option>pomegranate</option>
+                    <option>rice</option>
+                    <option>watermelon</option>
                 </select>
             </div>
             <div class="form-group">
@@ -125,16 +123,18 @@
                 <input type="number" id="nitrogen" required>
             </div>
             <div class="form-group">
-                <label>Phosphorous:</label>
-                <input type="number" id="phosphorous" required>
-            </div>
-            <div class="form-group">
                 <label>Potassium:</label>
                 <input type="number" id="potassium" required>
             </div>
+            <div class="form-group">
+                <label>Phosphorus:</label>
+                <input type="number" id="phosphorus" required>
+                
+            </div>
+         
             <button type="submit" name="submit" class="btn">Get Recommendation</button>
         </form>
-        
+
         <div class="result" id="result"></div>
     </div>
     <script>
@@ -148,9 +148,9 @@
                 "soil": document.getElementById("soil").value,
                 "crop": document.getElementById("crop").value,
                 "nitrogen": parseFloat(document.getElementById("nitrogen").value),
-                "phosphorus": parseFloat(document.getElementById("phosphorous").value),
-                "potassium": parseFloat(document.getElementById("potassium").value)
-            };
+                "potassium": parseFloat(document.getElementById("potassium").value),
+                "phosphorus": parseFloat(document.getElementById("phosphorus").value),
+    };
     
             fetch("http://127.0.0.1:5000/predict", {  // ✅ Ensure this matches Flask URL
                 method: "POST",
@@ -161,10 +161,12 @@
             })
             .then(response => response.json())  // ✅ Ensure response is JSON
             .then(data => {
-                if (data.recommendation) {
-                    document.getElementById("result").innerText = "Recommended Fertilizer: " + data.recommendation;
+                console.log("Received:", data);
+                if (data.fertilizer) {
+                    document.getElementById("result").innerText = "Recommended Fertilizer: " + data.fertilizer;
                 } else {
                     document.getElementById("result").innerText = "Error: " + (data.error || "Unexpected response");
+
                 }
             })
             .catch(error => console.error("Fetch Error:", error));
